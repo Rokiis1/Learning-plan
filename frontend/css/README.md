@@ -1,58 +1,14 @@
 # Table of Contents
 
-- [CSS](#css)
-  - [Introduction to CSS](#introduction)
-  - [CSS Syntax](#syntax)
-  - [BEM architecture](#bem-architecture)
-    - [Why should you use BEM?](#why-should-you-use-bem)
+- [Basics CSS](#basics-css)
 - [Selectors](#selectors)
-  - [Basic Selectors](#basic-selectors)
-    - [Element Selector](#element-selector)
-    - [Class Selector](#class-selector)
-    - [ID Selector](#id-selector)
-    - [Universal Selector](#universal-selector)
-    - [Inline selector](#inline-selector)
-    - [Descendant Selector](#descendant-selector)
-    - [Universal Selector](#universal-selector)
 - [CSS Properties](#css-properties)
-  - [CSS Units](#css-units)
-    - [Pixels (px):](#pixels)
-    - [Percentages (%):](#percentages)
-    - [EM:](#em)
-    - [REM:](#rem)
-    - [Viewport units (vw, vh)](#viewport-units)
+- [CSS Units](#css-units)
 - [Width And Length](#width-and-length)
-  - [<html> vs <body>](#html-vs-body)
-  - [How backgorund-color works on html and body tags](#how-backgorund-color-works-on-html-and-body-tags)
-- [CSS Font](#font)
-  - [Font sample](#font-sample)
-- [(Optional)CSS Color Formats](#optional-css-color-formats)
-  - [Hexadecimal Colors](#hexadecimal)
-  - [Hexadecimal Colors with Transparency](#hexadecimal-transparency)
-  - [RGB Colors](#rgb)
-  - [RGBA Colors](#rgba)
-  - [HSL Colors](#hsl)
+- [CSS Fonts](#font)
+- [CSS Color Formats](css-color-formats)
 - [CSS Layout](#css-layout)
-  - [Box Model](#box-model)
-  - [Floats](#floats)
-  - [Position property](#position-property)
-  - [Positioning and Z-index](#positioning-and-zindex)
-  - [Flexbox](#flexbox))
-  - [Grid](#grid)
 - [Media Queries](#media-queries)
-  - [Introduction](#introduction)
-  - [How do media queries work?](#how-do-media-queries-work)
-  - [Why should you use media queries?](#why-should-you-use-media-queries)
-  - [Mobile-First Approach](#mobile-first-approach)
-  - [Hide/Show Elements](#hide-show-elements)
-- [(Optional)Others selectors](#optional-others-selectors)
-    - [Advance Selectors](#advance-selectors)
-      - [Pseudo-classes](#pseudo-classes)
-      - [Child Selector](#child-selecotr)
-      - [Adjacent Sibling Selector](#adjacent-sibling-selector)
-      - [General Sibling Selector](#general-sibling-selector)
-      - [Attribute Selector](#attribute-selector)
-      - [More selectors](#more-selectors)
 
 # CSS
 
@@ -389,7 +345,6 @@ HSL colors offer a more intuitive way to manipulate colors, allowing you to adju
   border: 2px solid hsl(240, 100%, 50%); /* Blue border */
   box-shadow: 2px 2px 4px hsl(0, 0%, 53%); /* Gray shadow */
 }
-
 ```
 
 #### Examples
@@ -398,22 +353,118 @@ HSL colors offer a more intuitive way to manipulate colors, allowing you to adju
 
 # CSS Layout
 
-CSS offers different techniques for creating layouts. Some commonly used layout methods include:
+**Explanation:**
 
-- Floats: Allows elements to be positioned side-by-side.
-- Positioning: Allows precise positioning of elements using properties like position, `top`, `right`, `bottom`, and `left`.
-- Flexbox: Provides a flexible way to arrange elements in a container.
-- Grid: Enables the creation of complex grid-based layouts.
+**CSS (Cascading Style Sheets) Layout** refers to the technique of positioning and arranging elements on a web page. It plays a crucial role in determining how content is displayed and organized in a web document. CSS Layout enables web designers and developers to control the placement, size, and spacing of elements such as text, images, and other HTML elements within a webpage.
+
+![CSS Layouts](./assets/images/cssLayouts/cssLayout.png)
 
 ## Box Model
 
-The CSS box model describes the layout of elements on a web page. It consists of four components: content, `padding`, `border`, and `margin`. Understanding the box model is crucial for positioning and spacing elements correctly.
+**Explanation:**
 
-![Box model](./images/boxModel.png)
+ The foundation of CSS layout is the box model. In this model, every element on a webpage is treated as a rectangular box. Each box comprises four core properties: content, padding, border, and margin. These properties collectively dictate the element's size and positioning within the layout.
 
-## Resources
+![Box model](./assets/images/cssLayouts/boxModel.png)
 
-[(Video)Learn CSS Box Model](https://www.youtube.com/watch?v=rIO5326FgPE)
+- [CSS Box-Model Diagram](#css-box-model-diagram)
+- [Margins vs Padding Property](#margins-vs-padding-property)
+- [Border Property](#border-property)
+- [Box-sizing Property](#box-sizing-property)
+
+### CSS Box-Model Diagram
+
+**Explanation:**
+
+Think of the CSS box-model like an *onion*. It has **4 Layers:**
+
+- **1st layer:** Content
+
+- **2nd layer:** Padding
+
+- **3rd layer:** Border
+
+- **4th layer:** Margin
+
+![Box Model Diagram](./assets/images/cssLayouts/boxModelDiagram.png)
+
+**Example:**
+
+- [Example: CSS Box-Model Diagram](https://codesandbox.io/s/boxmodel-dgyxtj?file=/index.html)
+
+### Margins vs Padding Property
+
+**Explanation:**
+
+**Margins and Padding** are fundamental properties in CSS that control the spacing around and within HTML elements, playing a critical role in the layout and design of web pages. They are used to create space, alignment, and separation between elements.
+
+**Key Concepts:**
+
+- **Margins:** Margins are the spaces outside an element. They define the gap between the element and its adjacent elements. Margins do not have a background color or content, and they effectively separate elements from one another or from the edges of their containing element.
+
+- **Padding:** Padding, on the other hand, is the space within an element, between the element's content and its border. Padding is used to control the distance between an element's content and its border. It affects the size and spacing of the element's content.
+
+**Syntax:**
+
+```css
+/* Margin: margin-top margin-right margin-bottom margin-left; */
+/* Margin can be set using auto, a length value, a percentage, or other units. */
+selector {
+    margin: 10px 20px 10px 30px; /* Example setting margins for top, right, bottom, and left sides */
+}
+
+/* Padding: padding-top padding-right padding-bottom padding-left; */
+/* Padding can also be set using various units and values. */
+selector {
+    padding: 5% 15px 0 0; /* Example setting padding for top, right, bottom, and left sides */
+}
+```
+
+### Border Property
+
+**Explanation:**
+
+The `border` property in CSS is used to define the style, width, and color of an element's border. It plays a significant role in the visual design and layout of web pages, helping to create distinctions between elements and improve overall aesthetics.
+
+**Key Concepts:**
+
+1. **Border Style:** The `border-style` property determines the type of border to be displayed. Common values include `solid`, `dotted`, `dashed`, `double`, `none`.
+
+2. **Border Width:** The `border-width` property specifies the thickness of the border. It can take values like `thin`, `medium`, `thick`, or specific measurements in pixels (`px`), `em`, `rem`, etc. You can set different widths for each border side (top, right, bottom, left) or use shorthand notations.
+
+3. **Border Color:** The `border-color` property defines the color of the border. It can accept color names, hexadecimal color codes, RGB values, or other valid color representations. Like border width, you can set different colors for each side or use shorthand notations.
+
+**Syntax:**
+
+```css
+selector {
+    border: border-style border-width border-color;
+}
+```
+
+**Example:**
+
+- [Example: Border Property](https://codesandbox.io/s/boxmodelborders-57fz7y?file=/index.html)
+
+### Box-sizing Property
+
+**Explanation:**
+
+The `box-sizing property` in CSS is used to control how an element's total width and height are calculated, particularly in relation to its content, padding, and border. Understanding and using this property is crucial for managing the layout of web elements. 
+
+**Key Concepts:**
+
+- **Content Box (default):** By default, the `box-sizing` property is set to `content-box`. In this mode, an element's width and height only consider the content itself. Padding and border are added to the specified width and height.
+
+- **Border Box:** When `box-sizing` is set to `border-box`, the width and height of an element include the content, padding, and border. This means that the padding and border dimensions are included within the specified width and height, and the content area shrinks accordingly.
+
+**Syntax:**
+
+```css
+selector {
+    box-sizing: content-box; /* or box-sizing: border-box; */
+}
+```
 
 ## Floats
 
