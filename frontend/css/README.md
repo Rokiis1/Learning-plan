@@ -353,6 +353,11 @@ HSL colors offer a more intuitive way to manipulate colors, allowing you to adju
 
 # CSS Layout
 
+- [Box Model](#box-model)
+- [Overflow Handling](#overflow-handling)
+- [Positioning](#positioning)
+- [Display Property](#display-property)
+
 **Explanation:**
 
 **CSS (Cascading Style Sheets) Layout** refers to the technique of positioning and arranging elements on a web page. It plays a crucial role in determining how content is displayed and organized in a web document. CSS Layout enables web designers and developers to control the placement, size, and spacing of elements such as text, images, and other HTML elements within a webpage.
@@ -361,16 +366,16 @@ HSL colors offer a more intuitive way to manipulate colors, allowing you to adju
 
 ## Box Model
 
+- [CSS Box-Model Diagram](#css-box-model-diagram)
+- [Margins vs Padding Property](#margins-vs-padding-property)
+- [Border Property](#border-property)
+- [Box-sizing Property](#box-sizing-property)
+
 **Explanation:**
 
  The foundation of CSS layout is the box model. In this model, every element on a webpage is treated as a rectangular box. Each box comprises four core properties: content, padding, border, and margin. These properties collectively dictate the element's size and positioning within the layout.
 
 ![Box model](./assets/images/cssLayouts/boxModel.png)
-
-- [CSS Box-Model Diagram](#css-box-model-diagram)
-- [Margins vs Padding Property](#margins-vs-padding-property)
-- [Border Property](#border-property)
-- [Box-sizing Property](#box-sizing-property)
 
 ### CSS Box-Model Diagram
 
@@ -466,256 +471,216 @@ selector {
 }
 ```
 
-## Floats
+## Overflow Handling
 
 **Explanation:**
 
-The CSS Float Property is a fundamental feature in CSS that allows elements to float to the left or right within their container, causing other elements to flow around them. This property is commonly used for creating text wrapping around images or positioning elements side by side.
+The CSS overflow property is a valuable tool for managing how content within an HTML element overflows its container when it doesn't fit within the available space. This property allows you to control how the overflow is handled, whether it's hidden, scrollable, or automatically managed.
 
 **Key Concepts:**
 
-- **Float Property:** The `float` property is used to specify whether an element should be floated to the left, right, or not at all. It is typically applied to block-level elements like images and divs.
+1. **Content Overflow:** When the content within an element exceeds the dimensions of its container, it results in content overflow. This commonly occurs with text, images, or elements within fixed-size containers.
 
-- **Text Wrapping:** When an element is floated, adjacent text and inline elements will wrap around it, filling the available space beside the floated element.
+2. **`overflow: hidden`:** This value hides any content that overflows the container. It effectively clips or conceals any content extending beyond the container's boundaries, making it invisible to the user.
 
-- **Clear Property:** To prevent elements from floating around a floated element, you can use the `clear` property to ensure that no floating elements are allowed on a specific side of the cleared element.
+3. **`overflow: scroll`:** When set to scroll, the container will provide scrollbars to navigate through the overflowing content. Users can scroll to view the hidden content. Scrollbars appear both horizontally and vertically if necessary.
+
+4. **`overflow: auto`:** The auto value dynamically manages the overflow. It hides overflowed content if it fits within the container, and it adds scrollbars if necessary. This value strikes a balance by showing scrollbars only when content overflows.
 
 **Syntax:**
 
 ```css
-selector {
-    float: left | right | none | inherit;
+element {
+    overflow: value;
 }
 ```
-- **left:** The element floats to the left.
-- **right:** The element floats to the right.
-- **none:** The element does not float, and content flows around it as normal.
-- **inherit:** The element inherits the float property from its parent.
+
+- `element`: Replace this with the selector for the HTML element for which you want to manage overflow.
+
+- `value`: Specify one of the values (`hidden`, `scroll`, or `auto`) to control the overflow behavior.
 
 **Example:**
 
-- [Example: Float 1](https://codesandbox.io/s/float-j56g3x?file=/index.html)
+## Positioning
 
-- [Example: Float 2](https://codesandbox.io/s/float-jpg-mmzccy?file=/styles.css)
+- [Position Property](#position-property)
+- [z-index Property](#z-index-property)
+- [Float Property](#float-property)
 
-## Position property:
+**Explanation:**
 
-- `static` (default): Elements are rendered in their normal order and flow within the document.
-- `relative`: Elements are positioned `relative` to their normal position. You can use properties like `top`, `bottom`, `left`, or `right` to offset them from their original position.
-- `absolute`: Elements are positioned `relative` to their nearest positioned ancestor. If there is no positioned ancestor, it's positioned `relative` to the initial containing block.
-- `fixed`: Elements are positioned `relative` to the browser window and do not move even if the page is scrolled.
+CSS provides different methods to position elements within a layout.
 
-## Positioning and Z-index
+### Position Property
 
-- In HTML and CSS, you can use the position property to define how an element is positioned on a web page. There are several possible values for the position property, including `static` (the default), `relative`, `absolute`, and "`fixed`.
+**Explanation:**
 
-When you set the position property to `relative` or `absolute`, you can use the `z-index` property to control the stacking order of elements. The `z-index` property determines which element appears in front or behind other elements when they overlap on the page.
+The CSS `position` property is a fundamental tool for controlling the positioning of elements within a web page's layout. It enables you to manipulate an element's position in relation to its normal flow within the document. This property offers four distinct values: `relative`, `absolute`, `fixed`, and `sticky`, each of which has a specific effect on how the element is positioned.
 
-Explanation of how the position property and `z-index` work together:
+**Key Concepts:**
 
+1. `relative`: When an element is set to `position: relative`, it allows you to adjust its position relative to its normal flow location. The element retains its space in the layout, meaning it may affect the positioning of surrounding elements. You can use properties like `top`, `right`, `bottom`, and `left` to shift the element from its original position while preserving the layout's integrity.
 
-## Z-index property:
+2. `absolute`: Using `position: absolute`, you position an element relative to its closest positioned ancestor. If no ancestor is positioned (by setting `position: relative`, `position: absolute`, or `position: fixed`), the element is positioned relative to the initial containing block (usually the viewport). This makes it suitable for creating overlays, dropdown menus, or positioning elements precisely in the layout without affecting the flow of other elements.
 
-- The `z-index` property is used to specify the stack order of positioned elements.
-- It takes a numeric value, where elements with a higher `z-index` value appear in front of elements with a lower value.
-- Negative values are also allowed, and elements with negative `z-index` values appear behind elements with positive values or the default stack order.
+3. `fixed`: With `position: fixed`, an element is fixed in the viewport, regardless of scrolling. It's commonly employed for elements like navigation bars that should remain visible while the page is scrolled. Fixed elements don't affect the layout of other elements and are positioned in relation to the viewport.
 
-## Code example
+4. `sticky`: The `position: sticky` property is used to create elements that act as if they're `relative` until they reach a defined scroll position and then switch to `fixed` positioning. This is useful for creating headers or sidebars that become fixed when they reach a specific point on the screen, providing a smooth scrolling experience.
 
-- [Fixed possition](https://codesandbox.io/s/fixedposistion-rm9xr6)
-- [Relative and Absolute position](https://codesandbox.io/s/relative-and-absolute-position-m6226x)
-- [z-index](https://codesandbox.io/s/vigorous-smoke-wqrz6c?file=/index.html)
-
-## Flexbox
-
-- [Getting Started](#flex-box-getting-started)
-- [Flex Container](#flex-container)
-- [Flex Items](#flex-items)
-- [Flex Direction](#flex-directions)
-- [Justify Content](#justify-content)
-- [Align Items](#align-items)
-- [Flex Wrap](#flex-wrap
-
-Flexbox is a CSS layout module that provides an efficient way to arrange and align elements within a container. It offers a flexible and responsive design approach, making it ideal for building user interfaces.
-
-### Getting Started
-
-To use Flexbox, you need to define a flex container by setting the `display` property of the container to `flex`. This enables the container to arrange its child elements using Flexbox.
+**Syntax:**
 
 ```css
-.container {
-  display: flex;
+element {
+    position: value;
+    /* Additional positioning properties can be used with certain values */
 }
 ```
 
-### Flex Container
+- `element`: Replace this with the selector for the HTML element you want to position.
+- `value`: Choose one of the following values: `relative`, `absolute`, `fixed`, or `sticky`.
 
-The flex container is the parent element that holds the flex items. It defines the context in which Flexbox layout operates. Here are a few properties commonly used with flex containers:
+Additional properties, like `top`, `right`, `bottom`, and `left`, can be used to fine-tune the position of an element when position is set to relative or absolute.
 
-`flex-direction`: Specifies the direction in which the flex items are laid out.
-`justify-content`: Defines how flex items are aligned along the main axis.
-`align-items`: Sets the alignment of flex items along the cross axis.
-`flex-wrap`: Determines whether flex items should wrap or remain on a single line.
+**Example:**
 
-### Flex Items
+### z-index Property
 
-Flex items are the child elements within the flex container. They are laid out based on the properties set on the flex container. Here's an example of a flex container with three flex items:
+**Explanation:**
 
-```html
-<div class="container">
-  <div class="item">Item 1</div>
-  <div class="item">Item 2</div>
-  <div class="item">Item 3</div>
-</div>
-```
-```css
-.container {
-  display: flex;
-}
+The CSS `z-index` property is a crucial tool for controlling the stacking order of elements in a web page when they overlap. It plays a fundamental role in creating layered layouts and managing which elements appear on top of others. The `z-index` property allows you to specify the order in which elements are rendered, with elements having higher `z-index` values displayed in front of those with lower values. While `z-index` is commonly used in conjunction with the `position` property (`position: absolute` or `position: relative`), it's important to note that using `z-index` doesn't require setting the `position` property.
 
-.item {
-  /* Add styling properties to the flex items */
-}
-```
+**Key Concepts:**
 
-### Flex Direction
+1. **Stacking Order**: The stacking order determines the visual hierarchy of elements on a web page. Elements are stacked on top of one another in the order in which they appear in the HTML document. By default, elements with later declarations in the document are rendered on top of earlier ones. The `z-index` property allows you to modify this order and control how elements overlap and interact.
 
-The `flex-direction` property controls the direction in which flex items are laid out. It accepts four possible values:
+2. **Higher Values, Closer to the Top**: When you set a higher `z-index` value for an element, it places that element closer to the top of the stacking order. Elements with higher `z-index` values will be displayed in front of elements with lower `z-index` values, effectively determining which elements appear on top of others in the visual layout.
 
-`row`: Flex items are laid out horizontally from left to right.
-`row-reverse`: Flex items are laid out horizontally from right to left.
-`column`: Flex items are laid out vertically from top to bottom.
-`column-reverse`: Flex items are laid out vertically from bottom to top.
+3. **Using `position`:** While it's not mandatory, `z-index` is often used in combination with the position property. When an element is positioned with `position: absolute` or `position: relative`, you can apply `z-index` to control the stacking order of elements within the positioned context. Elements with the same position value, like `relative` or `absolute`, are compared based on their `z-index` values.
+
+**Syntax:**
 
 ```css
-.container {
-  flex-direction: value;
+element {
+    z-index: value;
 }
 ```
-### Justify Content
 
-The `justify-content` property determines how flex items are aligned along the main axis of the flex container. It offers several alignment options:
+- `element`: Replace this with the selector for the HTML element to which you want to apply the `z-index` property.
 
-`flex-start`: Flex items are aligned at the start of the container.
-`flex-end`: Flex items are aligned at the end of the container.
-`center`: Flex items are centered within the container.
-`space-between`: Flex items are evenly distributed with space between them.
-`space-around`: Flex items are evenly distributed with space around them.
+- `value`: Assign a numerical value to indicate the stacking order. Higher values bring elements closer to the top.
 
-### Align Items
+**Example:**
 
-The `align-items` property sets the alignment of flex items along the cross axis of the flex container. It provides the following alignment options:
+### Float Property
 
-`flex-start`: Flex items are aligned at the top of the container.
-`flex-end`: Flex items are aligned at the bottom of the container.
-`center`: Flex items are centered vertically within the container.
-`baseline`: Flex items are aligned based on their baselines.
-`stretch`: Flex items are stretched to fill the container vertically.
+**Explanation:**
 
-### Flex Wrap
+The CSS `float` property is a layout property used to shift an element to the left or right within its containing element. This positioning allows text and other elements to wrap around the floated element. While `float` was historically used for creating layouts with floated elements, it has been largely replaced by more modern layout techniques like Flexbox and CSS Grid. `float` is primarily used for specific purposes like creating text-wrapping behavior.
 
-By default, flex items are laid out on a single line. However, if the container's width is not sufficient, flex items can be wrapped onto multiple lines using the `flex-wrap` property. It accepts two values:
+**Key Concepts:**
 
-- `nowrap`: Flex items are forced to remain on a single line.
-- `wrap`: Flex items wrap onto multiple lines as needed.
+1. **Floating Elements:** When an element is floated, it is removed from the normal flow of the document and shifted to the left or right within its containing element. This allows other elements, such as text, to wrap around the floated element. It's commonly used for aligning images within a block of text or creating multi-column layouts.
+
+2. **Historical Usage:** In the past, `float` was a common technique for creating complex page layouts. It allowed web designers to achieve desired positioning effects. However, it had limitations and quirks, which led to the development of more robust layout techniques like Flexbox and CSS Grid.
+
+3. **Text Wrapping:** One of the primary uses of `float` is to create text-wrapping behavior around images or other floated elements. This can enhance the readability and aesthetics of a page by integrating content more harmoniously with visuals.
+
+**Syntax:**
 
 ```css
-.container {
-  flex-wrap: value;
+element {
+    float: value;
 }
 ```
-### Resources
 
-- [(Article)CSS-Tricks: A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- [(Video)Flexbox crash course](https://www.youtube.com/watch?v=u044iM9xsWU)
+- `element`: Replace this with the selector for the HTML element you want to apply the `float` property to.
 
-## Grid
+- `value`: Specify either `left` or `right` to determine the direction in which the element should be floated.
 
-- [Getting Started](#grid-box-getting-started)
-- [Grid Container](#grid-container)
-- [Grid Items](#grid-items)
-- [Grid Template](#grid-templates)
-- [Justify Content](#grid-justify-content)
-- [Align Items](#grid-align-items)
+**Example:**
 
-### Getting Started
+## Display Property
 
-CSS Grid, a powerful layout system that allows us to create flexible and responsive web designs. Grid provides a two-dimensional layout structure, allowing us to define both rows and columns to arrange elements on a webpage.
+- [Block vs Inline vs Inline-block Value](#block-inline-inline-block-value)
+- [Flexbox Value](#flexbox-value)
+- [Grid Value](#grid-value)
 
-### Grid Container
+**Explanation:**
 
-The grid container is the parent element that holds all the grid items. By applying the `display: grid` property to an element, we can create a grid container. The grid container allows us to define the overall layout of the grid, including the number of rows and columns.
+**Display Property:** The display property specifies how an HTML element is rendered. It can take various values such as `block`, `inline`, `inline-block`, `flex`, `grid`, and more. Each value influences how the element interacts with its surrounding elements and how it flows within the layout.
+
+### Block vs Inline vs Inline-block Value
+
+**Explanation:**
+
+In CSS, the `display` property is used to define how an HTML element should be displayed in the layout. Three common values for the `display` property are `block`, `inline`, and `inline-block`. These values determine the box type and flow behavior of the element, significantly impacting its layout and interaction with other elements.
+
+**Key Concepts:**
+
+1. **Block Elements (`display: block`):** Elements with `display: block` create a block-level box in the layout. They typically start on a new line and take up the full width of their containing element. Block-level elements are suitable for structural components like headings, paragraphs, divs, and containers.
+
+2. **Inline Elements (`display: inline`):** Elements with `display: inline` generate an inline-level box, which flows within the text of a block-level container. Inline elements do not start on a new line, and their width is determined by the content they contain. Common inline elements include text, links, and inline images.
+
+3. **Inline-Block Elements (`display: inline-block`):** `display: inline-block` combines characteristics of both block-level and inline-level elements. Inline-block elements are placed inline, allowing other inline content to flow around them, but they can have width, height, margins, and padding, just like block-level elements. This makes inline-block elements useful for creating inline text alongside block-level components, such as icons next to text.
+
+**Syntax:**
 
 ```css
-.container {
-  display: grid;
+element {
+    display: value;
 }
 ```
 
-### Grid Items
+- `element`: Replace this with the selector for the HTML element you want to apply the `display` property to.
+- `value`: Use one of the values (`block`, `inline`, or `inline-block`) to specify how the element should be displayed.
 
-Grid items are the child elements of the grid container. They are automatically placed onto the grid based on their order in the HTML markup. You can control their placement using properties like `grid-row` and `grid-column`. Here's an example:
+**Example:**
 
-```css
-.grid-item {
-  grid-row: 1 / 3;
-  grid-column: 2 / 4;
-}
-```
+### Flexbox Value
 
-### Grid Template
+**Explanation:**
 
-The grid template is used to define the structure of the grid, specifying the number and size of the rows and columns. We can use keywords such as `auto`, `fr`, and specific lengths to define the dimensions of the grid tracks.
+The CSS Flexbox layout model, short for "Flexible Box," is a powerful layout system designed for one-dimensional layouts, which can be oriented as either rows or columns. It provides the ability to create flexible and dynamic layouts, align elements, and distribute space efficiently. Flexbox is particularly useful for building a wide range of web page components, such as navigation menus, grids, and complex alignment scenarios.
 
-To define a grid template, use the `grid-template-rows` and `grid-template-columns` properties:
+**Key Concepts:**
 
-```css
-.container {
-  grid-template-rows: value; /* Two rows with specific heights */
-  grid-template-columns: value; /* Two columns with a ratio of for example 1:2 */
-}
-```
-### Code examples
+1. **One-Dimensional Layouts:** Flexbox is designed to handle one-dimensional layouts, either in a row (horizontally) or a column (vertically). It excels in situations where you need to arrange elements in a single direction, making it well-suited for creating responsive designs and arranging content side by side or stacked.
 
-- [Code examples(Grid Container)](https://codesandbox.io/s/grid-container-tkhq72?file=/index.html)
-- [Code examples(Grid Items)](https://codesandbox.io/s/grid-items-phxrk2?file=/index.html)
-- [Code examples(Grid Template)](https://codesandbox.io/s/grid-template-g2yv4v?file=/index.html)
+2. **Flexible and Dynamic:** Flexbox allows you to create layouts that adapt to the available space, making it excellent for building responsive web designs. Elements within a flex container can expand or contract to fit the container's width or height, maintaining a consistent and visually appealing layout.
 
-### Justify Content
+3. **Alignment and Distribution:** Flexbox provides powerful alignment and distribution capabilities. You can easily control the alignment of items within a flex container, both along the main axis and the cross axis. This includes options for centering, distributing space, and handling content of varying sizes.
 
-The `justify-content` property is used to align the grid items along the horizontal axis (row direction) within the grid container. It controls the distribution of space between and around the grid items.
+4. **Applications:** Flexbox is commonly used for a variety of web components, including navigation menus, card layouts, sidebars, and responsive designs. It simplifies the process of creating complex layouts that would be challenging with traditional CSS techniques.
 
-To justify the content within the grid container, use the following CSS:
+**Syntax:**
 
-```css
-.container {
-  justify-content: value; /* Align items to the center */
-}
-```
-### Align Items 
+**Example:**
 
-The `align-items` property is used to align the grid items along the vertical axis (column direction) within the grid container. It controls the distribution of space between and around the grid items.
+### Grid Value
 
-To align the items within the grid container, use the following CSS:
+**Explanation:**
 
-```css
-.container {
-  align-items: value; /* Align items to the center */
-}
-```
+The CSS Grid layout system is a versatile two-dimensional grid-based layout model that enables the creation of complex layouts with rows and columns. It's particularly well-suited for designing grid-based web layouts, including multi-column web pages, image galleries, and responsive designs. CSS Grid provides precise control over the placement and alignment of elements within the grid.
 
-### Resources
+**Key Concepts:**
 
-- [(Article)CSS-Tricks: A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-- [(Video)Grid crash course](https://www.youtube.com/watch?v=rg7Fvvl3taU)
+1. **Two-Dimensional Layout:** CSS Grid differs from other layout models like Flexbox, as it operates in two dimensions, allowing you to define both rows and columns. This capability is particularly useful for creating grid-based structures where elements are positioned in both horizontal and vertical axes.
+
+2. **Grid Container and Grid Items:** In CSS Grid, you have a grid container, which is an element that defines the grid context. Within the grid container, you place grid items, which are the elements you want to position within the grid. Grid items are positioned based on the grid lines defined by the container.
+
+3. P**recise Placement:** CSS Grid offers fine-grained control over the placement of grid items. You can specify the size of rows and columns, control the alignment of items, and even create complex layouts, such as asymmetrical grids and overlapping items.
+
+4. **Responsive Design:** Grid is highly adaptable for responsive web design. It allows you to change the layout and grid structure based on the available screen width or height, making it ideal for building designs that adapt to various devices and screen sizes.
+
+**Syntax:**
+
+**Example:**
 
 # Media Queries
 
 Media queries enable you to apply different styles based on the characteristics of the user's device or browser. They are commonly used for creating responsive designs that adapt to different screen sizes.
 
 ## Introduction
-
-Media queries are a powerful feature of CSS that allow you to apply different styles based on the characteristics of the device or browser window. They enable you to create responsive designs that adapt to various screen sizes, resolutions, and orientations. This README.md file provides an overview of media queries, how they work, and why you should use them in your projects.
 
 ## How do media queries work?
 
