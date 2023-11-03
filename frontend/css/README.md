@@ -487,19 +487,39 @@ The CSS overflow property is a valuable tool for managing how content within an 
 
 4. **`overflow: auto`:** The auto value dynamically manages the overflow. It hides overflowed content if it fits within the container, and it adds scrollbars if necessary. This value strikes a balance by showing scrollbars only when content overflows.
 
+5. **`overflow-x`:** This property exclusively manages the horizontal overflow. You can use it to control how content that overflows the container's width is handled. Available values include `hidden` to hide overflow, scroll to add horizontal `scrollbars`, and `auto` to manage overflow dynamically.
+
+6. **`overflow-y`:** `overflow-y` is used to exclusively manage the vertical overflow. It helps you determine how content that overflows the container's height is managed. Similar to `overflow-x`, it supports values like `hidden`, `scroll`, and `auto` to control vertical overflow.
+
+7. **`overflow-wrap: normal`:** This is the default value, and it allows words to break only at permitted break points (such as spaces or hyphens). Words that cannot fit within the container's width without breaking at a permitted point will overflow the container.
+
+8. **`overflow-wrap: break-word`:** When set to `break-word`, the property allows words to break at any point, even if it's not a permitted break point. This prevents long words from overflowing the container and ensures they wrap to the next line as needed.
+
 **Syntax:**
 
 ```css
 element {
     overflow: value;
+    overflow-x: value;
+    overflow-y: value;
+    overflow-wrap: value;
+
 }
 ```
 
 - `element`: Replace this with the selector for the HTML element for which you want to manage overflow.
 
-- `value`: Specify one of the values (`hidden`, `scroll`, or `auto`) to control the overflow behavior.
+- `overflow`: Specify one of the values (`hidden`, `scroll`, or `auto`) to control the overall overflow behavior.
+
+- `overflow-x`: Specify one of the values (`hidden`, `scroll`, or `auto`) to control horizontal overflow.
+
+- `overflow-y`: Specify one of the values (`hidden`, `scroll`, or `auto`) to control vertical overflow.
+
+- `overflow-wrap`: Specify one of the values (`normal` or break-`word`) to control word wrapping behavior.
 
 **Example:**
+
+- [Example: overflow](https://codesandbox.io/s/overflow-smlj8q?file=/index.html)
 
 ## Positioning
 
@@ -543,6 +563,8 @@ Additional properties, like `top`, `right`, `bottom`, and `left`, can be used to
 
 **Example:**
 
+- [Example: Position Property](https://codesandbox.io/s/posistioncss-2296wj?file=/index.html)
+
 ### z-index Property
 
 **Explanation:**
@@ -571,6 +593,8 @@ element {
 
 **Example:**
 
+- [Example: z-index Property](https://codesandbox.io/s/posistioncss-2296wj?file=/index.html)
+
 ### Float Property
 
 **Explanation:**
@@ -598,6 +622,8 @@ element {
 - `value`: Specify either `left` or `right` to determine the direction in which the element should be floated.
 
 **Example:**
+
+- [Example: float](https://codesandbox.io/s/recursing-mountain-vg8wzh?file=/index.html)
 
 ## Display Property
 
@@ -636,6 +662,8 @@ element {
 
 **Example:**
 
+- [Example: Block vs Inline vs Inline-block Value](https://codesandbox.io/s/block-vs-inline-vs-inline-block-value-vg8wzh)
+
 ### Flexbox Value
 
 **Explanation:**
@@ -654,7 +682,25 @@ The CSS Flexbox layout model, short for "Flexible Box," is a powerful layout sys
 
 **Syntax:**
 
+```css
+.container {
+  display: flex | inline-flex; /* Defines the container as a block-level or inline-level flex container */
+  
+  flex-direction: row | row-reverse | column | column-reverse; /* Main axis direction */
+  
+  flex-wrap: nowrap | wrap | wrap-reverse; /* Wrapping behavior */
+  
+  justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly; /* Main axis alignment */
+  
+  align-items: flex-start | flex-end | center | baseline | stretch; /* Cross axis alignment */
+  
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch; /* Cross axis alignment for multiple lines */
+}
+```
+
 **Example:**
+
+- [Example: Flexbox Value](https://codesandbox.io/s/flex-s37skd?file=/index.html)
 
 ### Grid Value
 
@@ -668,7 +714,7 @@ The CSS Grid layout system is a versatile two-dimensional grid-based layout mode
 
 2. **Grid Container and Grid Items:** In CSS Grid, you have a grid container, which is an element that defines the grid context. Within the grid container, you place grid items, which are the elements you want to position within the grid. Grid items are positioned based on the grid lines defined by the container.
 
-3. P**recise Placement:** CSS Grid offers fine-grained control over the placement of grid items. You can specify the size of rows and columns, control the alignment of items, and even create complex layouts, such as asymmetrical grids and overlapping items.
+3. **Precise Placement:** CSS Grid offers fine-grained control over the placement of grid items. You can specify the size of rows and columns, control the alignment of items, and even create complex layouts, such as asymmetrical grids and overlapping items.
 
 4. **Responsive Design:** Grid is highly adaptable for responsive web design. It allows you to change the layout and grid structure based on the available screen width or height, making it ideal for building designs that adapt to various devices and screen sizes.
 
