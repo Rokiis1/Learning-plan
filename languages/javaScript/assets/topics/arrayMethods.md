@@ -672,12 +672,238 @@ functionName(myArray, (element, index) => {
 
 The `reduce` method is used to reduce the elements of an array to a single value. It takes a callback function and an initial accumulator value.
 
+*custom `reduce`*
+
+**Syntax:**
+
+*Before ES6 use a for loop to iterate over the elements*
+
+```javascript
+let numbers = [1, 2, 3];
+
+let sum = 0;
+for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+}
+
+console.log(sum);
+// First, declare an array of three numbers 1, 2 and 3.
+// Second, declare the sum variable and set its value to zero.
+// Third, in the for loop, add up the elements of the numbers array to the sum variable. After the loop, the value of the sum variable is 6.
+```
+
+*Sytax:*
+
+```javascript
+array.reduce(callbackFn [, initialValue])
+array.reduce(callback(accumulator, currentValue[, currentIndex, array])[, initialValue])
+// callback: The function to execute on each element in the array.
+// accumulator: The initial value or the previously returned accumulator value.
+// currentValue: The current element being processed.
+// currentIndex: (Optional) The index of the current element being processed.
+// array: (Optional) The array reduce was called upon.
+// initialValue: (Optional) The initial value to use as the first argument to the callback function.
+```
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.customReduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+
+console.log(sum); // Output: 15
+```
+
+*native `reduce`*
+
+```javascript
+let numbers = [1, 2, 3];
+
+let sum = numbers.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue;
+});
+
+console.log(sum); // Output: 6
+```
+
+```
+Step 1:
+ 1
+^
+| 
++--- previousValue / Accumulator (initially 0)
+
+Step 2:
+ 1   2
+^   ^
+|   |
++---+--- previousValue / Accumulator (0 + 1)
+
+Step 3:
+ 1   2   3
+^   ^   ^
+|   |   |
++---+---+--- previousValue / Accumulator (1 + 2)
+
+Result:
+ 1   2   3
+^   ^   ^
+|   |   |
++---+---+--- Final Result (3 + 3)
+```
+
+**Differences:**
+
+1. **Custom Method:**
+   In the first example, `customReduce` is used, which suggests that there is a custom implementation of the `reduce` method added to the Array prototype.
+
+2. **Initial Value:**
+   In both examples, an initial value is provided for the accumulator. In the first example, the initial value is explicitly set to `0`, while in the second example, the initial value is not provided. When the initial value is not provided, the first element of the array is used as the initial accumulator value.
+
+3. **Implementation:**
+   Without seeing the exact implementation of `customReduce`, it's difficult to provide specific details about differences in behavior. However, the core functionality should be similar to the native `reduce` method, accumulating values based on the provided callback function.
+
 ## Array `filter`:
 
-The `filter` method creates a new array with elements that satisfy a provided condition.
+**Explanation:**
+
+The `filter` method is a built-in function in many programming languages, including JavaScript, Python, and others. It is commonly used with arrays to create a new array containing only the elements that satisfy a certain condition or criteria. The original array remains unchanged.
+
+**Key Concepts:**
+
+1. **Callback Function:**
+   - The `filter` method takes a callback function as an argument. This function is applied to each element of the array.
+   - The callback function should return `true` or `false` based on a condition. If it returns `true`, the element is included in the new array; otherwise, it is excluded.
+
+2. **New Array:**
+   - The `filter` method returns a new array containing only the elements that pass the condition specified in the callback function.
+
+**Syntax:**
+
+The syntax for the `filter` method is generally as follows:
+
+```javascript
+const newArray = array.filter(callback(element[, index[, array]])[, thisArg]);
+```
+
+- `callback`: A function to test each element of the array.
+  - `element`: The current element being processed in the array.
+  - `index` (optional): The index of the current element being processed.
+  - `array` (optional): The array `filter` was called upon.
+- `thisArg` (optional): Object to use as `this` when executing the callback function.
+
+**Example:**
+
+```javascript
+// Example 1: Filtering even numbers
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const evenNumbers = numbers.filter(function (number) {
+  return number % 2 === 0;
+});
+
+console.log(evenNumbers);
+// Output: [2, 4, 6, 8, 10]
+
+// Example 2: Filtering words with more than 5 characters
+const words = ["apple", "banana", "orange", "kiwi", "strawberry"];
+
+const longWords = words.filter(function (word) {
+  return word.length > 5;
+});
+
+console.log(longWords);
+// Output: ["banana", "orange", "strawberry"]
+```
 
 ## Array `sort`:
 
-The `sort` method is used to sort the elements of an array. By default, it sorts elements as strings. To sort numbers, a custom compare function can be provided.
+**Explanation:**
 
+The `sort()` method in programming is used to arrange the elements of an array in a specific order. The order can be ascending or descending, and the sorting is typically based on either numeric or lexicographic (dictionary) order. The original array is often modified in place.
 
+**Key Concepts:**
+
+- **In-place Sorting:** The `sort()` method usually modifies the original array rather than creating a new sorted array.
+- **Comparator Function:** In some programming languages, the `sort()` method allows you to provide a custom comparator function to define the sorting order.
+
+**Syntax:**
+The syntax for the `sort()` method varies slightly between programming languages, but the general form is as follows:
+
+```javascript
+array.sort([compareFunction])
+```
+
+- `array`: The array to be sorted.
+- `compareFunction` (optional): A function that defines the sort order. If omitted, the array elements are converted to strings and sorted lexicographically.
+
+**Example:**
+
+*Simple ASC Example:*
+
+```javascript
+let numbers = [4, 2, 8, 1, 6];
+
+// Using the sort() method to sort the array in ascending order
+numbers.sort();
+
+console.log(numbers);  // Output: [1, 2, 4, 6, 8]
+```
+
+*ASCENDING order*
+
+```javascript
+array.sort( function(a, b){
+    if(a > b) return 1;
+    if(a < b) return -1;
+    return 0;
+});
+
+console.log(array);
+```
+
+*DESCENDING order*
+
+```javascript
+array.sort(function(a, b) {
+    if (a > b) return -1;
+    if (a < b) return 1;
+    return 0;
+});
+
+console.log(array);
+```
+
+*Arrow function*
+
+```javascript
+array.sort((a,b) => {
+    if(a > b) return 1;
+    if(a < b) return -1;
+    return 0;
+});
+
+console.log(array);
+```
+
+*Sorting Numbers*
+
+```javascript
+let scores = [
+    9, 80, 10, 20, 5, 70
+];
+// sort numbers in ascending order
+scores.sort((a, b) => a - b);
+
+console.log(scores);
+```
+
+*Alphabetical order*
+
+```javascript
+// Sort by name in alphabetical order
+cartItems.sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+});
+```
